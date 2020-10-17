@@ -1,4 +1,4 @@
-name: stock_project_final
+name: stock_project_final_1
 channels:
   - conda-forge
   - defaults
