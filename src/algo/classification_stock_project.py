@@ -46,6 +46,3 @@ print('Test Accuracy:{: .2f}%'.format(accuracy_test*100))
 df['Predicted_Signal'] = cls.predict(X)
 
 print(df)
-print(df)
-print(df)
-print(df)
