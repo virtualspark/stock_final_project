@@ -47,3 +47,4 @@ df['Predicted_Signal'] = cls.predict(X)
 
 print(df)
 print(df)
+print(df)
