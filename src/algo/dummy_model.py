@@ -38,7 +38,7 @@ class Stock_model(BaseEstimator, ClassifierMixin):
         self._data_fetcher = data_fetcher
         self.log.warning('here')
 
-    def fit(self, X, y):
+    def fit(self, X, y=None):
         data = self._data_fetcher(X)
         df_features = create_features(data)
         df_features, Y = create_X_Y(df_features)
