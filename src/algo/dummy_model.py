@@ -2,6 +2,7 @@ import logging
 
 from sklearn.base import BaseEstimator, ClassifierMixin
 # from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import balanced_accuracy_score
@@ -34,7 +35,8 @@ class Stock_model(BaseEstimator, ClassifierMixin):
     def __init__(self, data_fetcher):
         self.log = logging.getLogger()
         # self.lr = LinearRegression()
-        self.lr = SVC()
+        # self.lr = SVC()
+        self.lr = LogisticRegression()
         self._data_fetcher = data_fetcher
         self.log.warning('here')
 
@@ -50,7 +52,8 @@ class Stock_model(BaseEstimator, ClassifierMixin):
         df_features = create_features(data)
         X, y = create_X_Y(df_features)
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20)
-        cls = SVC().fit(X_train, y_train)
+        # cls = SVC().fit(X_train, y_train)
+        cls = LogisticRegression(random_state=0).fit(X_train, y_train)
         accuracy_train = balanced_accuracy_score(y_train, cls.predict(X_train)) * 100
         accuracy_test = balanced_accuracy_score(y_test, cls.predict(X_test)) * 100
         predictions = cls.predict(X)
@@ -59,5 +62,6 @@ class Stock_model(BaseEstimator, ClassifierMixin):
         # predictions_buy_sell = np.where(predictions = 1, 'Buy', 'Sell')
         # predictions = self.lr.predict(df_features)
         # return predictions.flatten()[-1]
-        return predictions, "Train Accuracy:", accuracy_train, "%", "Test Accuracy:", accuracy_test, "%"
+        return predictions
+        # , "Train Accuracy:", accuracy_train, "%", "Test Accuracy:", accuracy_test, "%"
 
