@@ -14,15 +14,6 @@ pd.set_option('display.max_columns', None)
 def create_features(df_stock, nlags=1):
     df_resampled = df_stock.resample('1D').mean()
     df_resampled = df_resampled[df_resampled.index.to_series().apply(lambda x: x.weekday() not in [5, 6])]
-
-    # df_resampled = df_resampled.reset_index()
-    # df_resampled = df_resampled.where(df_resampled['index'] >= "2020-01-01")
-    # df_resampled = df_resampled.where(df_resampled)
-    # lags_col_names = []
-    # for i in range(nlags + 1):
-    #     df_resampled['lags_' + str(i)] = df_resampled['close'].shift(i)
-    #     lags_col_names.append('lags_' + str(i))
-
     df_resampled['open_close'] = df_resampled.open - df_resampled.close
     df_resampled['high_low'] = df_resampled.high - df_resampled.low
     df_resampled['D+1'] = df_resampled['close'].shift(0)
