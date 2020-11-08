@@ -4,8 +4,8 @@ from src.business_logic.process_query import create_business_logic
 
 app = Flask(__name__)
 
-import os
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="C:/Users/Admin/Desktop/stock_final_project/artful-athlete-292316-70398a8b80a6.json"
+#import os
+#os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="C:/Users/Admin/Desktop/stock_final_project/artful-athlete-292316-70398a8b80a6.json"
 
 @app.route('/')
 def index():
@@ -22,6 +22,7 @@ def get_stock_value(ticker):
     bl = create_business_logic()
     prediction = bl.do_predictions_for(ticker)
     output = prediction
+    return prediction
     return render_template('results.html', output=output)
 
 if __name__ == '__main__':
