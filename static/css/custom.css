@@ -1,0 +1,24 @@
+.homeHead {
+    background: url("../images/stock_pics_02.jpg") no-repeat center;
+  }
+
+.top_head {
+    height: 400px;
+    background-size: cover;
+    margin-top: 20px;
+}
+
+.uppercase {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 50px;
+
+}
+
+.text_centered {
+  text-align: center;
+}
+
+.div-align {
+  text-align: center;
+}
