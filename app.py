@@ -22,7 +22,7 @@ def get_stock_value(ticker):
     bl = create_business_logic()
     prediction = bl.do_predictions_for(ticker)
     output = prediction
-    return prediction
+    #return prediction
     return render_template('results.html', output=output)
 
 if __name__ == '__main__':
