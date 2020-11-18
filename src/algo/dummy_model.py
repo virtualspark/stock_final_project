@@ -1,9 +1,8 @@
 import logging
 
 from sklearn.base import BaseEstimator, ClassifierMixin
-# from sklearn.linear_model import LinearRegression
 from sklearn.linear_model import LogisticRegression
-# from sklearn.svm import SVC
+from sklearn.ensemble import BaggingClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import balanced_accuracy_score
 import numpy as np
@@ -62,18 +61,14 @@ class Stock_model(BaseEstimator, ClassifierMixin):
     def predict(self, X, y=None):
         data = self._data_fetcher(X, last=True)
         df_features = create_features(data)
-        # df_features, Y = create_X_Y(df_features)
         X, y = create_X_Y(df_features)
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.40)
-        # cls = SVC().fit(X_train, y_train)
-        cls = LogisticRegression(random_state=0).fit(X_train, y_train)
-        accuracy_train = balanced_accuracy_score(y_train, cls.predict(X_train)) * 100
-        accuracy_test = balanced_accuracy_score(y_test, cls.predict(X_test)) * 100
-        predictions = cls.predict(X)
-        predictions = np.where(predictions == 1, 'Buy', 'Sell')
-        predictions = predictions.flatten()[-1]
-        # predictions_buy_sell = np.where(predictions = 1, 'Buy', 'Sell')
-        # predictions = self.lr.predict(df_features)
-        # return predictions.flatten()[-1]
-        return predictions
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.50)
+        clf = BaggingClassifier(base_estimator=LogisticRegression(), n_estimators=10, bootstrap=True).fit(X, y)
+        accuracy_train_clf = balanced_accuracy_score(y_train, clf.predict(X_train)) * 100
+        accuracy_test_clf = balanced_accuracy_score(y_test, clf.predict(X_test)) * 100
+        predictions_clf = clf.predict(X)
+        predictions_clf = np.where(predictions_clf == 1, 'Buy', 'Sell')
+        predictions_clf = predictions_clf.flatten()[-1]
+        print(accuracy_train_clf, accuracy_test_clf)
+        return predictions_clf
 
