@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Stan's Stock Prediction App</title>
+
+<!-- FONT –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic"/>
+
+<!-- CSS –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css"/>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{ url_for('static',filename='css/custom.css') }}"/>
+
+<!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="{{ url_for('static',filename='images/stock_pics_01.jpg') }}" />
+
+</head>
+
+
+<body class="container">
+    <div class="top_head homeHead"></div>
+    
+    <section class="section">
+    
+        <div class = "columns">
+            <div class="column is-one-half">
+                <img src="../static/images/stock_pics_03.jpg" alt="stock_pics_03" />
+            </div>
+
+            <div class = "column is-one-half">
+
+                <div class="title text_centered">The ticker is not found.</div>
+    
+                <br>
+
+                <p class="text_centered">Other tickers you want to predict?</p>
+                <br>
+                <div class="div-align">
+                    <input id="input_stock"></input>
+                    <button id="submit_button" class="text_centered" onClick="stock_direct()">Submit</button>
+                    <br><br>
+                    <p id="main" onClick="main_page()"><a>Back to the main page</a></p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <footer class="text_centered">
+        <p>&copy; Copyright 2020, Stanley T.</p>
+        <br><br><br>
+    </footer>
+
+</body>
+
+<script>
+    function stock_direct () {
+        location.href = '../get_stock_val/' + document.getElementById("input_stock").value;
+    }
+
+    function main_page () {
+        location.href = '../'
+    }
+</script>
+
+</html>
