@@ -7,13 +7,13 @@ app = Flask(__name__)
 #import os
 #os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="C:/Users/Admin/Desktop/stock_final_project/artful-athlete-292316-70398a8b80a6.json"
 
-@app.route('/')
-def index():
-   return render_template('index.html')
+#@app.route('/')
+#def index():
+#   return render_template('index.html')
 
-@app.errorhandler(500)
-def page_not_found(e):
-   return render_template('error_page.html', title='500'), 500
+#@app.errorhandler(500)
+#def page_not_found(e):
+#   return render_template('error_page.html', title='500'), 500
 
 @app.route('/', methods=['GET'])
 def hello():
@@ -24,9 +24,9 @@ def hello():
 def get_stock_value(ticker):
     bl = create_business_logic()
     prediction = bl.do_predictions_for(ticker)
-    output = prediction
-    #return prediction
-    return render_template('results.html', output=output)
+#    output = prediction
+    return prediction
+#    return render_template('results.html', output=output)
 
 if __name__ == '__main__':
     # Used when running locally only. When deploying to Cloud Run,
